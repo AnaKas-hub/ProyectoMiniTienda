@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProyectoMiniTienda.Models.CompraVenta>
+
+@{
+    ViewBag.Title = "Compra y Ventas!!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2 class="text-center">Compra y Ventas!!</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create", new { @class = "btn btn-dark" });*@
+    <a href="@Url.Action("Create","CompraVentas")" class="btn btn-primary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsCompra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @if (item.EsCompra == true)
+            {
+                <p class=" text-primary">Comprado</p>
+            }
+            else
+            {
+                <p class="text-danger">Vendido</p>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @*<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-success" }) 
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) 
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </div>*@
+        </td>
+    </tr>
+}
+</table>
+
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item text-primary">Total ingresos: @ViewBag.ingresos </li>
+        <li class="list-group-item text-primary">Total gasto: @ViewBag.gastos</li>
+        <li class="list-group-item text-primary">Total neto: @ViewBag.neto</li>
+    </ul>
+</div>
